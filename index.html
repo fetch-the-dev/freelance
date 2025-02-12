@@ -1,130 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expert Web Development for Design Agencies</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background: #121212;
-            color: #f0f0f0;
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.5;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-        h2 {
-            font-size: 1.75rem;
-            font-weight: 500;
-            margin-top: 0.5rem;
-        }
-        p {
-            font-size: 1.125rem;
-        }
-        .contact-form {
-            margin-top: 1rem;
-        }
-        input, select {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            background: #2a2a2a;
-            border: 1px solid #444;
-            color: #f0f0f0;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #00aaff;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            background-color: #00aaff;
-            color: #121212;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        button:hover {
-            background-color: #0088cc;
-            transform: scale(1.05);
-        }
-        footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #888;
-        }
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #1e1e1e;
-            color: #f0f0f0;
-            padding: 10px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        .cookie-banner button {
-            background: #00aaff;
-            color: #121212;
-            border: none;
-            padding: 5px 10px;
-            margin-left: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Development for Design Agencies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Base Reset & Typography */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #121212;
+      color: #f0f0f0;
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.5;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    /* Fade in keyframe on page load */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .container {
+      max-width: 600px;
+      padding: 20px;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+    p {
+      font-size: 1.125rem;
+      margin: 0.75rem 0;
+    }
+    .tagline {
+      font-size: 1.125rem;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: #bbbbbb;
+    }
+
+    /* Form styling with accessible labels and spacing */
+    .contact-form {
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-form label {
+      margin: 0.5rem 0 0.2rem;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      color: #f0f0f0;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #00aaff;
+      box-shadow: 0 0 8px rgba(0,170,255,0.3);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      background-color: #00aaff;
+      color: #121212;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background-color: #0088cc;
+      transform: scale(1.05);
+    }
+    button:focus {
+      outline: 2px solid #00aaff;
+      outline-offset: 2px;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    /* Validation error styling */
+    .error {
+      color: #ff4d4d;
+      font-size: 0.9rem;
+    }
+
+    /* New section visibility */
+    .hidden {
+      display: none;
+    }
+
+    /* Radio buttons styling */
+    .contact-form input[type="radio"] {
+    width: auto;
+    margin: 1rem .5rem .85rem .6rem;
+    }
+    .radio-label {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: flex-start;
+      margin-bottom: 0.5rem;
+    }
+    .radio-label input[type="radio"] {
+      margin-left: 0;
+      margin-right: 12px;
+    }
+
+    /* Make sure all inputs under radio buttons have full width */
+    .contact-form textarea, .contact-form input[type="url"] {
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Expert Web Development for Design Agencies</h1>
-        <p>Over a decade of experience building high-quality websites for top-tier clients. No fuss, no delays—just clean, efficient front-end development that brings your designs to life.</p>
-        <p>I work with agencies that handle high-end branding and web design. One example: I collaborate with a New York City-based agency specializing in wine and spirits brands across the U.S. and worldwide. They count on me to build, maintain, and fine-tune websites that match their design quality and meet their clients’ expectations—without hassle.</p>
-        <h2>$105/hr – Quick Audits & Full Builds Available</h2>
-        <p>Need a quick audit or a project quote? Fill out the form below, and I’ll take a look.</p>
-        <div class="contact-form">
-            <form>
-                <input type="text" placeholder="Your Name" aria-label="Your Name" required>
-                <input type="email" placeholder="Your Email" aria-label="Your Email" required>
-                <input type="url" placeholder="Your Website URL" aria-label="Your Website URL" required>
-                <select aria-label="Select Your Need" required>
-                    <option value="">Select Your Need</option>
-                    <option value="audit">Quick Audit ($50)</option>
-                    <option value="quote">Project Quote</option>
-                </select>
-                <button type="submit">Submit</button>
-            </form>
+  <div class="container">
+    <h1>Reliable Web Development for Design Agencies</h1>
+    <p class="tagline">Over a decade of experience providing both functional and well-designed web services for clients. No friction, no delays. Just clean, efficient front-end development that upholds design integrity.</p>
+    <p>I work with agencies specializing in high-end branding and web design, such as a NYC-based agency focused on wine and spirits brands worldwide. They trust me to build, maintain, and improve websites that match their design quality and client expectations without hassle.</p>
+    <h2> – $105/hr – <br />Turnaround Tasks & Full Builds Available</h2>
+    <p>Need a quick audit or project quote? Fill out the form, and I’ll take a look.</p>
+    <div class="contact-form">
+      <form id="contact-form">
+        <label for="name">Your Name</label>
+        <input id="name" type="text" placeholder="Enter your name" aria-label="Your Name" required>
+        <div id="name-error" class="error"></div>
+
+        <label for="email">Your Email</label>
+        <input id="email" type="email" placeholder="Enter your email" aria-label="Your Email" required>
+        <div id="email-error" class="error"></div>
+
+        <!-- Updated selection -->
+        <label>Select Your Need:</label>
+
+        <div class="radio-label">
+          <input type="radio" id="quick-audit" name="need" value="quick-audit" /> 
+          <label for="quick-audit">Quick Audit (Free)</label>
         </div>
-        <footer>
-            <p>Contact: your.email@example.com | © 2025 Freelance Web Developer</p>
-        </footer>
+        <div id="website-url-container" class="hidden">
+          <label for="website">Your Website URL</label>
+          <input id="website" type="url" placeholder="Enter your website URL" aria-label="Your Website URL">
+        </div>
+
+        <div class="radio-label">
+          <input type="radio" id="project-quote" name="need" value="project-quote" /> 
+          <label for="project-quote">High-Level Estimate (Free)</label>
+        </div>
+        <div id="description-container" class="hidden">
+          <label for="description">Short Description or Full Requirements</label>
+          <textarea id="description" placeholder="Briefly describe your needs. No confidential information, please." aria-label="Short Description or Full Requirements"></textarea>
+        </div>
+
+        <div class="radio-label">
+          <input type="radio" id="consultation-call" name="need" value="consultation-call" /> 
+          <label for="consultation-call">30min Consultation Call (Free)</label>
+        </div>
+        <div id="availability-container" class="hidden">
+          <label for="availability">Your Availability</label>
+          <textarea id="availability" placeholder="Enter your hours of availability, desired date range, and meeting platform of choice. Please allow 72 hours ahead." aria-label="Your Upcoming Availability"></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
     </div>
-    <div class="cookie-banner" id="cookie-banner">
-        <p>This site uses cookies for analytics and testing. <button onclick="document.getElementById('cookie-banner').style.display='none'">Opt Out</button></p>
-    </div>
+    <footer>
+      <p>Contact: fetchenbrandi@gmail.com | © 2025 Brandi Fetchen</p>
+    </footer>
+  </div>
+
+  <script>
+    // Show/hide additional inputs based on selected radio button
+    const quickAuditRadio = document.getElementById('quick-audit');
+    const projectQuoteRadio = document.getElementById('project-quote');
+    const consultationCallRadio = document.getElementById('consultation-call');
+    const websiteUrlContainer = document.getElementById('website-url-container');
+    const descriptionContainer = document.getElementById('description-container');
+    const availabilityContainer = document.getElementById('availability-container');
+
+    quickAuditRadio.addEventListener('change', function() {
+      websiteUrlContainer.classList.remove('hidden');
+      descriptionContainer.classList.add('hidden');
+      availabilityContainer.classList.add('hidden');
+    });
+
+    projectQuoteRadio.addEventListener('change', function() {
+      websiteUrlContainer.classList.add('hidden');
+      descriptionContainer.classList.remove('hidden');
+      availabilityContainer.classList.add('hidden');
+    });
+
+    consultationCallRadio.addEventListener('change', function() {
+      websiteUrlContainer.classList.add('hidden');
+      descriptionContainer.classList.add('hidden');
+      availabilityContainer.classList.remove('hidden');
+    });
+  </script>
 </body>
 </html>
