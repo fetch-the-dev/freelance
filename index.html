@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Web Development for Design Agencies</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #121212;
+            color: #f0f0f0;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        p {
+            font-size: 1.125rem;
+        }
+        .contact-form {
+            margin-top: 1rem;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            color: #f0f0f0;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #00aaff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            background-color: #00aaff;
+            color: #121212;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #0088cc;
+            transform: scale(1.05);
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #1e1e1e;
+            color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .cookie-banner button {
+            background: #00aaff;
+            color: #121212;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Expert Web Development for Design Agencies</h1>
+        <p>Over a decade of experience building high-quality websites for top-tier clients. No fuss, no delays—just clean, efficient front-end development that brings your designs to life.</p>
+        <h2>$105/hr – Quick Audits & Full Builds Available</h2>
+        <p>Need a quick audit or a project quote? Fill out the form below, and I’ll take a look.</p>
+        <div class="contact-form">
+            <form>
+                <input type="text" placeholder="Your Name" aria-label="Your Name" required>
+                <input type="email" placeholder="Your Email" aria-label="Your Email" required>
+                <input type="url" placeholder="Your Website URL" aria-label="Your Website URL" required>
+                <select aria-label="Select Your Need" required>
+                    <option value="">Select Your Need</option>
+                    <option value="audit">Quick Audit ($50)</option>
+                    <option value="quote">Project Quote</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <footer>
+            <p>Contact: your.email@example.com | © 2025 Freelance Web Developer</p>
+        </footer>
+    </div>
+    <div class="cookie-banner" id="cookie-banner">
+        <p>This site uses cookies for analytics and testing. <button onclick="document.getElementById('cookie-banner').style.display='none'">Opt Out</button></p>
+    </div>
+</body>
+</html>
