@@ -5,7 +5,7 @@ This is just my personal site. I use it to test different web tools and services
 ### Why I Made This  
 - **Sandbox:** I try out services like Google Analytics, Maze.co, and other tools to see how they work before recommending them to clients.  
 - **Developer Experiments:** Sometimes I test simple solutions, like using Google Analytics for basic site downtime monitoring. It’s not perfect, but it’s a quick way to keep an eye on things.  
-- **Freelance Work:** The page itself is clean, professional, and designed to be straightforward—just like the websites I build for agencies.  
+- **Freelance Work:** The page itself is intended to be clean, professional, and designed to be straightforward.  
 
 ### Feel Free to Use It  
 If you want to copy or tweak this for your own use, go for it. I don’t mind.  
