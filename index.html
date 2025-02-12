@@ -23,6 +23,7 @@
       align-items: center;
       text-align: center;
       animation: fadeIn 1s ease-in-out;
+      padding-bottom: 80px; /* Make space at bottom for cookie notification */
     }
     /* Fade in keyframe on page load */
     @keyframes fadeIn {
@@ -73,7 +74,7 @@
     .contact-form input,
     .contact-form select,
     .contact-form textarea {
-      width: 100%;
+      width: calc(100% - 24px);
       padding: 12px;
       margin-bottom: 1rem;
       background: #2a2a2a;
@@ -128,36 +129,72 @@
       display: none;
     }
 
-    /* Radio buttons styling */
-    .contact-form input[type="radio"] {
-    width: auto;
-    margin: 1rem .5rem .85rem .6rem;
-    }
-    .radio-label {
+    /* Radio buttons as styled buttons */
+    .contact-form .radio-buttons-container {
       display: flex;
-      align-items: center;
-      width: 100%;
-      justify-content: flex-start;
-      margin-bottom: 0.5rem;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 1rem;
     }
-    .radio-label input[type="radio"] {
-      margin-left: 0;
-      margin-right: 12px;
+    .contact-form .radio-buttons-container button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 500;
+      background-color: #333;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: 0;
+    }
+    .contact-form .radio-buttons-container button:hover {
+      background-color: #00aaff;
+      transform: scale(1.05);
+    }
+    .contact-form .radio-buttons-container button.selected {
+      background-color: #00aaff;
+      border-color: #0088cc;
     }
 
-    /* Make sure all inputs under radio buttons have full width */
-    .contact-form textarea, .contact-form input[type="url"] {
-      width: 100%;
+    /* Cookie notification */
+    #cookie-notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+    #cookie-notification button {
+      background: #00aaff;
+      color: #121212;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    #cookie-notification button:hover {
+      background: #0088cc;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Development for Design Agencies</h1>
-    <p class="tagline">Over a decade of experience providing both functional and well-designed web services for clients. No friction, no delays. Just clean, efficient front-end development that upholds design integrity.</p>
-    <p>I work with agencies specializing in high-end branding and web design, such as a NYC-based agency focused on wine and spirits brands worldwide. They trust me to build, maintain, and improve websites that match their design quality and client expectations without hassle.</p>
+    <p class="tagline">No friction, no delays. Just clean, efficient front-end development that upholds design integrity.</p>
+    <p>I work with agencies specializing in high-end branding and web design, such as a NYC-based agency focused on wine and spirits brands worldwide. They trust me to build, maintain, and improve websites that match their design quality and client expectations without hassle. Over a decade of experience providing both functional and well-designed web services for clients.</p>
     <h2>$105/hr – Quick & Full Builds Available</h2>
-    <p>Need a free audit or estimate? Fill out the form, and I’ll take a look.</p>
+    <p>Need a quick audit or estimate? Fill out the form, and I’ll take a look. <br />First one is on me.</p>
     <div class="contact-form">
       <form id="contact-form">
         <label for="name">Your Name</label>
@@ -168,36 +205,31 @@
         <input id="email" type="email" placeholder="johndoe@companyname.com" aria-label="Your Email" required>
         <div id="email-error" class="error"></div>
 
-        <!-- Updated selection -->
-        <label>Select Your Need:</label>
-
-        <div class="radio-label">
-          <input type="radio" id="quick-audit" name="need" value="quick-audit" /> 
-          <label for="quick-audit">Quick Audit (Free)</label>
+        <!-- New Select Your Need options as buttons -->
+        <div>
+        <label>Select Your Need</label>
+        <div class="radio-buttons-container">
+          <button type="button" id="quick-audit-btn">Free Site Overview</button>
+          <button type="button" id="project-quote-btn">Free Project Overview</button>
+          <button type="button" id="consultation-call-btn">Free Consultation</button>
         </div>
+
+        <!-- Conditional input fields -->
         <div id="website-url-container" class="hidden">
           <label for="website">Your Website URL</label>
           <input id="website" type="url" placeholder="brandname.com" aria-label="Your Website URL">
         </div>
 
-        <div class="radio-label">
-          <input type="radio" id="project-quote" name="need" value="project-quote" /> 
-          <label for="project-quote">High-Level Estimate (Free)</label>
-        </div>
         <div id="description-container" class="hidden">
-          <label for="description">Short Description or Full Requirements</label>
+          <label for="description">Short Description</label>
           <textarea id="description" placeholder="Briefly describe your needs. No confidential information, please." aria-label="Short Description or Full Requirements"></textarea>
         </div>
 
-        <div class="radio-label">
-          <input type="radio" id="consultation-call" name="need" value="consultation-call" /> 
-          <label for="consultation-call">30min Consultation Call (Free)</label>
-        </div>
         <div id="availability-container" class="hidden">
           <label for="availability">Your Availability</label>
           <textarea id="availability" placeholder="Enter your hours of availability, desired date range, and meeting platform of choice. Please allow 72 hours ahead." aria-label="Your Upcoming Availability"></textarea>
         </div>
-
+</div>
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -206,31 +238,59 @@
     </footer>
   </div>
 
+  <!-- Cookie Notification -->
+  <div id="cookie-notification">
+    <span>This site uses cookies for analytics and testing.</span>
+    <div>
+      <button id="cookie-accept">Opt-in</button>
+      <button id="cookie-decline">Opt-out</button>
+    </div>
+  </div>
+
   <script>
-    // Show/hide additional inputs based on selected radio button
-    const quickAuditRadio = document.getElementById('quick-audit');
-    const projectQuoteRadio = document.getElementById('project-quote');
-    const consultationCallRadio = document.getElementById('consultation-call');
+    // Show related input field when a button is clicked
+    const quickAuditBtn = document.getElementById('quick-audit-btn');
+    const projectQuoteBtn = document.getElementById('project-quote-btn');
+    const consultationCallBtn = document.getElementById('consultation-call-btn');
+
     const websiteUrlContainer = document.getElementById('website-url-container');
     const descriptionContainer = document.getElementById('description-container');
     const availabilityContainer = document.getElementById('availability-container');
 
-    quickAuditRadio.addEventListener('change', function() {
-      websiteUrlContainer.classList.remove('hidden');
-      descriptionContainer.classList.add('hidden');
-      availabilityContainer.classList.add('hidden');
+    const form = document.getElementById('contact-form');
+    const selectedButtons = document.querySelectorAll('.radio-buttons-container button');
+
+    selectedButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Reset previous selected state
+        selectedButtons.forEach(btn => btn.classList.remove('selected'));
+
+        // Add selected class to clicked button
+        button.classList.add('selected');
+
+        // Hide all sections first
+        websiteUrlContainer.classList.add('hidden');
+        descriptionContainer.classList.add('hidden');
+        availabilityContainer.classList.add('hidden');
+
+        // Show the corresponding field
+        if (button === quickAuditBtn) {
+          websiteUrlContainer.classList.remove('hidden');
+        } else if (button === projectQuoteBtn) {
+          descriptionContainer.classList.remove('hidden');
+        } else if (button === consultationCallBtn) {
+          availabilityContainer.classList.remove('hidden');
+        }
+      });
     });
 
-    projectQuoteRadio.addEventListener('change', function() {
-      websiteUrlContainer.classList.add('hidden');
-      descriptionContainer.classList.remove('hidden');
-      availabilityContainer.classList.add('hidden');
+    // Cookie notification opt-in/out buttons
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+      document.getElementById('cookie-notification').style.display = 'none';
     });
 
-    consultationCallRadio.addEventListener('change', function() {
-      websiteUrlContainer.classList.add('hidden');
-      descriptionContainer.classList.add('hidden');
-      availabilityContainer.classList.remove('hidden');
+    document.getElementById('cookie-decline').addEventListener('click', () => {
+      document.getElementById('cookie-notification').style.display = 'none';
     });
   </script>
 </body>
