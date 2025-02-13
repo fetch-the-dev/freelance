@@ -110,6 +110,10 @@
       margin-top: 20px;
       font-size: 0.9rem;
       color: #888;
+      bottom: 0;
+      position: absolute;
+      left: 0;
+      right: 0;
     }
     .error {
       color: #ff4d4d;
@@ -172,7 +176,7 @@
     #cookie-notification button:hover {
       background: #0088cc;
     }
-    .glowing-btn {
+.glowing-btn {
   position: relative;
   color: hsl(186 100% 69%);
   padding: 1em;
@@ -188,13 +192,6 @@
     0px 0px 0.5em 0px hsl(186 100% 69%);
   box-shadow: inset 0px 0px 0.5em 0px hsl(186 100% 69%),
     0px 0px 0.5em 0px hsl(186 100% 69%);
-}
-.glowing-txt {
-  -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
-    0 0 0.45em hsl(186 100% 69%);
-  -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
-    0 0 0.45em hsl(186 100% 69%);
-  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em hsl(186 100% 69%);
 }
 .glowing-btn::before {
   content: "";
@@ -281,7 +278,7 @@
           <textarea id="availability" placeholder="Enter your hours of availability, desired date range, and meeting platform of choice. Please allow 72 hours ahead." aria-label="Your Upcoming Availability"></textarea>
         </div>
 </div>
-        <button class="glowing-btn" type="submit"><span class="glowing-txt">Submit. I’ll take a look.</span></button>
+        <button class="glowing-btn" type="submit">Submit. I’ll take a look.</button>
       </form>
     <div style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
     <footer>
