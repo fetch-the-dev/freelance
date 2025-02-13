@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Development for Design Agencies</title>
+  <title>Front-End Development for Design Agencies</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     /* Base Reset & Typography */
@@ -12,7 +12,7 @@
       padding: 0;
       height: 100%;
       background: #121212;
-      color: #f0f0f0;
+      color: #bbbbbb;
       font-family: 'Roboto', sans-serif;
       line-height: 1.5;
     }
@@ -22,45 +22,38 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      animation: fadeIn 1s ease-in-out;
-      padding-bottom: 80px; /* Make space at bottom for cookie notification */
-    }
-    /* Fade in keyframe on page load */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      padding-bottom: 80px;
     }
     .container {
-      max-width: 600px;
+      max-width: 550px;
       padding: 20px;
     }
     h1 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2.8rem;
+      font-size: 1.8rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
+      color: #ffffff;
     }
     h2 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.75rem;
+      font-size: 1rem;
       font-weight: 500;
       margin-top: 1rem;
     }
     p {
-      font-size: 1.125rem;
+      font-size: 1rem;
       margin: 0.75rem 0;
     }
     .tagline {
       font-size: 1.125rem;
       font-style: italic;
       margin-bottom: 1.5rem;
-      color: #bbbbbb;
     }
-
-    /* Form styling with accessible labels and spacing */
     .contact-form {
-      margin-top: 1.5rem;
+      margin: 1.5rem auto 0 auto;
       text-align: left;
+      max-width: 425px;
     }
     .contact-form form {
       display: flex;
@@ -117,19 +110,13 @@
       font-size: 0.9rem;
       color: #888;
     }
-
-    /* Validation error styling */
     .error {
       color: #ff4d4d;
       font-size: 0.9rem;
     }
-
-    /* New section visibility */
     .hidden {
       display: none;
     }
-
-    /* Radio buttons as styled buttons */
     .contact-form .radio-buttons-container {
       display: flex;
       justify-content: center;
@@ -156,8 +143,6 @@
       background-color: #00aaff;
       border-color: #0088cc;
     }
-
-    /* Cookie notification */
     #cookie-notification {
       position: fixed;
       bottom: 20px;
@@ -186,12 +171,77 @@
     #cookie-notification button:hover {
       background: #0088cc;
     }
+    .glowing-btn {
+  position: relative;
+  color: hsl(186 100% 69%);
+  padding: 1em;
+  border: 0.15em solid hsl(186 100% 69%);
+  border-radius: 0.45em;
+  background: none;
+  perspective: 2em;
+  font-size: 1em;
+  letter-spacing: .1em;
+  -webkit-box-shadow: inset 0px 0px 0.5em 0px hsl(186 100% 69%),
+    0px 0px 0.5em 0px ;
+  -moz-box-shadow: inset 0px 0px 0.5em 0px hsl(186 100% 69%),
+    0px 0px 0.5em 0px hsl(186 100% 69%);
+  box-shadow: inset 0px 0px 0.5em 0px hsl(186 100% 69%),
+    0px 0px 0.5em 0px hsl(186 100% 69%);
+}
+.glowing-txt {
+  -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em hsl(186 100% 69%);
+  -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em hsl(186 100% 69%);
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em hsl(186 100% 69%);
+}
+.glowing-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.7;
+  filter: blur(1em);
+  transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+  background: hsl(186 100% 69%);
+  pointer-events: none;
+}
+.glowing-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: -1;
+  background-color: hsl(186 100% 69%);
+  box-shadow: 0 0 2em 0.2em hsl(186 100% 69%);
+  transition: opacity 100ms linear;
+}
+.glowing-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: none;
+  animation: none;
+}
+.glowing-btn:hover:before {
+  filter: blur(1.5em);
+  opacity: 1;
+}
+.glowing-btn:hover:after {
+  opacity: 1;
+}
+
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Development for Design Agencies</h1>
-    <p class="tagline">Just clean, efficient front-end web development that preserves your design.</p>
+    <h1>Front-End Development</h1>
+    <p> for Design Agencies</p>
+    <p></p>
+    <p>Clean efficient front-end web development that preserves your design.</p>
     <p>I work with agencies specializing in high-end branding, like a NYC design firm for global wine and spirits brands. They trust me to build, maintain, and improve websites to meet their standards. Minimal back-and-forth.</p>
     </ul>
     <h2>$105/hr Freelance Developer Based in NY <br />Quick Audits & Full Builds Available</h2>
@@ -230,7 +280,7 @@
           <textarea id="availability" placeholder="Enter your hours of availability, desired date range, and meeting platform of choice. Please allow 72 hours ahead." aria-label="Your Upcoming Availability"></textarea>
         </div>
 </div>
-        <button type="submit">Submit, and I’ll take a look</button>
+        <button class="glowing-btn" type="submit"><span class="glowing-txt">Submit, and I’ll take a look</span></button>
       </form>
     </div>
     <footer>
