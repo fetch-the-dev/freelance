@@ -21,8 +21,6 @@
       text-align: center;
     }
     .container {
-      opacity: 1;
-      transform: translateY(0);
       animation: fadeInUp 1s ease-out forwards;
       max-width: 900px;
       margin: 0 auto;
@@ -99,7 +97,6 @@
       background: #333;
       color: white;
       padding: 10px;
-      text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -133,12 +130,13 @@
     }
     .modal-content {
       background: #fff;
-      padding: 20px;
+      padding: 30px;
       border-radius: 8px;
       width: 90%;
       max-width: 500px;
       position: relative;
       animation: slideDown 0.5s ease-out;
+      text-align: left;
     }
     @keyframes slideDown {
       from { transform: translateY(-20px); opacity: 0; }
@@ -158,29 +156,60 @@
       margin: 10px 0 5px;
       font-weight: bold;
       color: #4a3421;
+      font-size: 1.1rem;
     }
     .contact-form input, .contact-form textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-bottom: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 1rem;
     }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #4a3421;
+      box-shadow: 0 0 5px rgba(74,52,33,0.5);
+      outline: none;
+    }
     .contact-form button {
       background: #4a3421;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-size: 1rem;
       transition: all 0.3s ease;
+      margin-top: 10px;
     }
     .contact-form button:hover {
       background: #3a2918;
       transform: scale(1.05);
       outline: 3px solid #ffbf47;
+    }
+    .contact-form .lock-info {
+      font-size: 0.9rem;
+      color: #4a3421;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .contact-form .lock-info svg {
+      width: 16px;
+      height: 16px;
+      fill: #4a3421;
+    }
+    .instruction {
+      font-size: 1rem;
+      color: #4a3421;
+      margin-bottom: 15px;
+    }
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: -5px;
+      margin-bottom: 10px;
     }
     #form-messages {
       margin-bottom: 10px;
@@ -198,38 +227,35 @@
       const cookieBanner = document.getElementById("cookie-consent-banner");
       const acceptBtn = document.getElementById("accept-cookies");
       const declineBtn = document.getElementById("decline-cookies");
-
       if (localStorage.getItem("cookieConsent")) {
         cookieBanner.style.display = "none";
       }
-
       acceptBtn.addEventListener("click", function () {
         localStorage.setItem("cookieConsent", "accepted");
         cookieBanner.style.display = "none";
       });
-
       declineBtn.addEventListener("click", function () {
         localStorage.setItem("cookieConsent", "declined");
         cookieBanner.style.display = "none";
       });
-
+      
       // Modal popup logic for the contact form
       const fillOutBtn = document.querySelector('.btn-secondary');
       const modal = document.getElementById("popup-modal");
       const closeModal = document.querySelector('.close-modal');
       const form = document.getElementById("popup-contact-form");
       const formMessages = document.getElementById("form-messages");
-
+      
       fillOutBtn.addEventListener("click", function(e) {
         e.preventDefault();
         modal.style.display = "flex";
       });
-
+      
       closeModal.addEventListener("click", function() {
         modal.style.display = "none";
         formMessages.innerHTML = "";
       });
-
+      
       // Close modal when clicking outside modal-content
       window.addEventListener("click", function(e) {
         if (e.target === modal) {
@@ -237,25 +263,80 @@
           formMessages.innerHTML = "";
         }
       });
-
-      // Form validation and submission
+      
+      // Inline validation functions
+      function validateField(field) {
+        const errorSpan = field.nextElementSibling;
+        if (!field.value.trim()) {
+          errorSpan.textContent = "This field is required.";
+          return false;
+        } else {
+          errorSpan.textContent = "";
+          return true;
+        }
+      }
+      
+      const nameField = document.getElementById("name");
+      const emailField = document.getElementById("email");
+      const messageField = document.getElementById("message");
+      
+      nameField.addEventListener("input", () => validateField(nameField));
+      emailField.addEventListener("input", () => {
+        const errorSpan = emailField.nextElementSibling;
+        if (!emailField.value.trim()) {
+          errorSpan.textContent = "This field is required.";
+        } else if (!/\S+@\S+\.\S+/.test(emailField.value)) {
+          errorSpan.textContent = "Please enter a valid email address.";
+        } else {
+          errorSpan.textContent = "";
+        }
+      });
+      messageField.addEventListener("input", () => validateField(messageField));
+      
+      // Secure Form validation and submission via AJAX
       form.addEventListener("submit", function(e) {
         e.preventDefault();
-        // Clear previous messages
         formMessages.innerHTML = "";
         
-        if (!form.checkValidity()) {
-          formMessages.innerHTML = "<span style='color: red;'>Please fill in all required fields correctly.</span>";
+        // Validate fields
+        let valid = true;
+        valid = validateField(nameField) && valid;
+        valid = validateField(emailField) && valid;
+        valid = validateField(messageField) && valid;
+        if (!valid) {
+          formMessages.innerHTML = "<span style='color: red;'>Please fix the errors above.</span>";
           return;
         }
         
-        // Simulate sending mail via mailto: (in practice, this will open the user's email client)
-        formMessages.innerHTML = "<span style='color: green;'>Thank you! Your message has been sent.</span>";
-        form.reset();
-        setTimeout(() => {
-          modal.style.display = "none";
-          formMessages.innerHTML = "";
-        }, 2000);
+        // Build form data
+        const formData = {
+          name: nameField.value.trim(),
+          email: emailField.value.trim(),
+          message: messageField.value.trim(),
+          csrf_token: form.csrf_token.value
+        };
+        
+        // Submit form securely using HTTPS (replace the URL with your secure endpoint)
+        fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        })
+        .then(response => {
+          if(response.ok) {
+            formMessages.innerHTML = "<span style='color: green;'>Thank you! Your message has been sent securely.</span>";
+            form.reset();
+            setTimeout(() => {
+              modal.style.display = "none";
+              formMessages.innerHTML = "";
+            }, 2000);
+          } else {
+            formMessages.innerHTML = "<span style='color: red;'>There was an error sending your message. Please try again later.</span>";
+          }
+        })
+        .catch(error => {
+          formMessages.innerHTML = "<span style='color: red;'>There was an error sending your message. Please try again later.</span>";
+        });
       });
     });
   </script>
@@ -272,30 +353,45 @@
     </div>
     <footer>© 2025 Brandi Fetchen</footer>
   </div>
-
+  
   <!-- Popup Modal for the Contact Form -->
-  <div id="popup-modal" class="modal">
+  <div id="popup-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h2 style="color:#4a3421;">Contact Me</h2>
+      <span class="close-modal" aria-label="Close">&times;</span>
+      <h2 id="modal-title" style="color:#4a3421;">Contact Me</h2>
+      <p class="instruction">Please fill out the form below. I’ll get back to you within 24 hours.</p>
       <div id="form-messages"></div>
-      <form id="popup-contact-form" action="mailto:fetchenbrandi@gmail.com" method="post" enctype="text/plain" novalidate>
+      <!-- Note: Replace the form action URL with your secure endpoint -->
+      <form id="popup-contact-form" action="https://example.com/submit" method="POST" novalidate>
         <div class="contact-form">
+          <!-- Hidden CSRF token for additional security -->
+          <input type="hidden" name="csrf_token" value="secure_token_here">
+          
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" required placeholder="Your name">
+          <input type="text" id="name" name="name" required placeholder="Your name" aria-required="true">
+          <div class="error-message"></div>
           
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="Your email">
+          <input type="email" id="email" name="email" required placeholder="Your email" aria-required="true">
+          <div class="error-message"></div>
           
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" required placeholder="Your message"></textarea>
+          <textarea id="message" name="message" rows="4" required placeholder="Your message" aria-required="true"></textarea>
+          <div class="error-message"></div>
           
-          <button type="submit">Send Message</button>
+          <button type="submit">Let’s Connect</button>
+          <div class="lock-info">
+            <!-- Simple lock icon using SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6-7h-1V7a5 5 0 0 0-10 0v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2zM8 7a4 4 0 0 1 8 0v3H8V7z"></path>
+            </svg>
+            <span>Your info is secure</span>
+          </div>
         </div>
       </form>
     </div>
   </div>
-
+  
   <div id="cookie-consent-banner" class="cookie-consent-banner">
     <p>This site uses cookies for analytics and testing.</p>
     <div class="cookie-consent-buttons">
@@ -303,7 +399,7 @@
       <button id="decline-cookies" class="btn btn-secondary">Decline</button>
     </div>
   </div>
-
+  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBNGFJX6XF"></script>
   <script>
