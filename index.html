@@ -1,4 +1,6 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Front-End Development for Design Agencies</title>
@@ -29,7 +31,7 @@
       background-repeat: no-repeat;
     }
     
-    /* Central container with fixed 600px width to align with accessible area */
+    /* Central container with fixed 600px width for the plain black accessible area */
     .container {
       width: 600px;
       padding: 20px;
@@ -66,7 +68,7 @@
       color: #dddddd;
     }
     
-    /* Contact Form */
+    /* Contact Form Styles */
     .contact-form {
       margin: 1.5rem auto 0 auto;
       text-align: left;
@@ -91,9 +93,9 @@
       width: 100%;
       padding: 12px;
       margin-bottom: 1rem;
-      background: #2a2a2a;
+      background: #1e1e1e;
       border: 1px solid #444;
-      color: #f0f0f0;
+      color: #ffffff;
       border-radius: 4px;
       font-size: 1rem;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -103,89 +105,65 @@
     .contact-form select:focus,
     .contact-form textarea:focus {
       outline: none;
-      border-color: #00aaff;
-      box-shadow: 0 0 8px rgba(0,170,255,0.3);
+      border-color: #00ffff;
+      box-shadow: 0 0 8px rgba(0,255,255,0.3);
     }
     
-    /* Buttons */
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 8px;
-      background-color: #00aaff;
-      color: #121212;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
+    /* Updated Radio Buttons for Need Selection */
+    .radio-buttons-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 1rem;
+    }
+    
+    .radio-buttons-container button {
+      padding: 12px 24px;
       font-size: 1rem;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-weight: 500;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      color: #ffffff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s, border-color 0.3s;
+      margin-top: 0;
     }
     
-    button:hover {
-      background-color: #0088cc;
+    .radio-buttons-container button:hover {
+      background: #00ffff;
+      border-color: #00ffff;
       transform: scale(1.05);
+      color:#000000;
     }
     
-    button:focus {
-      outline: 2px solid #00aaff;
-      outline-offset: 2px;
+    .radio-buttons-container button.selected {
+      background: #ff00ff;
+      border-color: #ff00ff;
     }
     
-    /* Glowing Button for call-to-action with updated style */
+    /* New Glowing Button Style */
     .glowing-btn {
       position: relative;
-      color: hsl(186, 100%, 69%);
+      background: linear-gradient(45deg, #00ffff, #ff00ff);
+      color: #121212;
+      border: none;
       padding: 1em;
-      border: 0.15em solid hsl(186, 100%, 69%);
       border-radius: 0.45em;
-      background: none;
-      perspective: 2em;
       font-size: 1em;
       letter-spacing: 0.1em;
-      box-shadow: inset 0 0 0.5em 0 hsl(186, 100%, 69%), 0 0 0.5em 0 hsl(186, 100%, 69%);
-      transition: color 0.3s ease;
-    }
-    
-    .glowing-btn::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      opacity: 0.7;
-      filter: blur(1em);
-      transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
-      background: hsl(186, 100%, 69%);
-      pointer-events: none;
-    }
-    
-    .glowing-btn::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      opacity: 0;
-      z-index: -1;
-      background-color: hsl(186, 100%, 69%);
-      box-shadow: 0 0 2em 0.2em hsl(186, 100%, 69%);
-      transition: opacity 100ms linear;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
     }
     
     .glowing-btn:hover {
-      color: rgba(0, 0, 0, 0.8);
+      transform: scale(1.05);
     }
     
-    .glowing-btn:hover:before {
-      filter: blur(1.5em);
-      opacity: 1;
-    }
-    
-    .glowing-btn:hover:after {
-      opacity: 1;
+    .glowing-btn:focus {
+      outline: 2px solid #00ffff;
+      outline-offset: 2px;
     }
     
     /* Footer */
@@ -207,37 +185,6 @@
     
     .hidden {
       display: none;
-    }
-    
-    /* Radio Buttons for form selections */
-    .contact-form .radio-buttons-container {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 1rem;
-    }
-    
-    .contact-form .radio-buttons-container button {
-      padding: 12px 24px;
-      font-size: 1rem;
-      font-weight: 500;
-      background-color: #333;
-      border: 1px solid #444;
-      color: #fff;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-      margin-top: 0;
-    }
-    
-    .contact-form .radio-buttons-container button:hover {
-      background-color: #00aaff;
-      transform: scale(1.05);
-    }
-    
-    .contact-form .radio-buttons-container button.selected {
-      background-color: #00aaff;
-      border-color: #0088cc;
     }
     
     /* Cookie Notification */
@@ -284,11 +231,11 @@
     <div class="contact-form">
       <form id="contact-form">
         <label for="name">Your Name</label>
-        <input id="name" type="text" placeholder="John Doe" aria-label="Your Name" required="">
+        <input id="name" type="text" placeholder="John Doe" aria-label="Your Name" required>
         <div id="name-error" class="error"></div>
   
         <label for="email">Your Email</label>
-        <input id="email" type="email" placeholder="johndoe@companyname.com" aria-label="Your Email" required="">
+        <input id="email" type="email" placeholder="johndoe@companyname.com" aria-label="Your Email" required>
         <div id="email-error" class="error"></div>
   
         <!-- Select Your Need Buttons -->
@@ -318,7 +265,7 @@
         </div>
         <button class="glowing-btn" type="submit">Submit. I’ll take a look.</button>
       </form>
-    <div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+    </div>
     <footer>
       <p>Contact: fetchenbrandi@gmail.com | © 2025 Brandi Fetchen</p>
     </footer>
@@ -371,6 +318,5 @@
       document.getElementById('cookie-notification').style.display = 'none';
     });
   </script>
-
-
-</body></html>
+</body>
+</html>
