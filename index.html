@@ -221,125 +221,99 @@
       }
     }
   </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Cookie consent logic
-      const cookieBanner = document.getElementById("cookie-consent-banner");
-      const acceptBtn = document.getElementById("accept-cookies");
-      const declineBtn = document.getElementById("decline-cookies");
-      if (localStorage.getItem("cookieConsent")) {
-        cookieBanner.style.display = "none";
-      }
-      acceptBtn.addEventListener("click", function () {
-        localStorage.setItem("cookieConsent", "accepted");
-        cookieBanner.style.display = "none";
-      });
-      declineBtn.addEventListener("click", function () {
-        localStorage.setItem("cookieConsent", "declined");
-        cookieBanner.style.display = "none";
-      });
-      
-      // Modal popup logic for the contact form
-      const fillOutBtn = document.querySelector('.btn-secondary');
-      const modal = document.getElementById("popup-modal");
-      const closeModal = document.querySelector('.close-modal');
-      const form = document.getElementById("popup-contact-form");
-      const formMessages = document.getElementById("form-messages");
-      
-      fillOutBtn.addEventListener("click", function(e) {
-        e.preventDefault();
-        modal.style.display = "flex";
-      });
-      
-      closeModal.addEventListener("click", function() {
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Cookie consent logic
+    const cookieBanner = document.getElementById("cookie-consent-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+    const declineBtn = document.getElementById("decline-cookies");
+    if (localStorage.getItem("cookieConsent")) {
+      cookieBanner.style.display = "none";
+    }
+    acceptBtn.addEventListener("click", function () {
+      localStorage.setItem("cookieConsent", "accepted");
+      cookieBanner.style.display = "none";
+    });
+    declineBtn.addEventListener("click", function () {
+      localStorage.setItem("cookieConsent", "declined");
+      cookieBanner.style.display = "none";
+    });
+
+    // Modal popup logic for the contact form
+    const fillOutBtn = document.querySelector('.btn-secondary');
+    const modal = document.getElementById("popup-modal");
+    const closeModal = document.querySelector('.close-modal');
+    const form = document.getElementById("popup-contact-form");
+    const formMessages = document.getElementById("form-messages");
+
+    fillOutBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      modal.style.display = "flex";
+    });
+
+    closeModal.addEventListener("click", function() {
+      modal.style.display = "none";
+      formMessages.innerHTML = "";
+    });
+
+    // Close modal when clicking outside modal-content
+    window.addEventListener("click", function(e) {
+      if (e.target === modal) {
         modal.style.display = "none";
         formMessages.innerHTML = "";
-      });
-      
-      // Close modal when clicking outside modal-content
-      window.addEventListener("click", function(e) {
-        if (e.target === modal) {
-          modal.style.display = "none";
-          formMessages.innerHTML = "";
-        }
-      });
-      
-      // Inline validation functions
-      function validateField(field) {
-        const errorSpan = field.nextElementSibling;
-        if (!field.value.trim()) {
-          errorSpan.textContent = "This field is required.";
-          return false;
-        } else {
-          errorSpan.textContent = "";
-          return true;
-        }
       }
-      
-      const nameField = document.getElementById("name");
-      const emailField = document.getElementById("email");
-      const messageField = document.getElementById("message");
-      
-      nameField.addEventListener("input", () => validateField(nameField));
-      emailField.addEventListener("input", () => {
-        const errorSpan = emailField.nextElementSibling;
-        if (!emailField.value.trim()) {
-          errorSpan.textContent = "This field is required.";
-        } else if (!/\S+@\S+\.\S+/.test(emailField.value)) {
-          errorSpan.textContent = "Please enter a valid email address.";
-        } else {
-          errorSpan.textContent = "";
-        }
-      });
-      messageField.addEventListener("input", () => validateField(messageField));
-      
-      // Secure Form validation and submission via AJAX
-      form.addEventListener("submit", function(e) {
-        e.preventDefault();
-        formMessages.innerHTML = "";
-        
-        // Validate fields
-        let valid = true;
-        valid = validateField(nameField) && valid;
-        valid = validateField(emailField) && valid;
-        valid = validateField(messageField) && valid;
-        if (!valid) {
-          formMessages.innerHTML = "<span style='color: red;'>Please review the questions below.</span>";
-          return;
-        }
-        
-        // Build form data
-        const formData = {
-          name: nameField.value.trim(),
-          email: emailField.value.trim(),
-          message: messageField.value.trim(),
-          csrf_token: form.csrf_token.value
-        };
-        
-        // Submit form securely using HTTPS (replace the URL with your secure endpoint)
-        fetch(form.action, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
-        })
-        .then(response => {
-          if(response.ok) {
-            formMessages.innerHTML = "<span style='color: green;'>Thank you! Your message has been sent securely.</span>";
-            form.reset();
-            setTimeout(() => {
-              modal.style.display = "none";
-              formMessages.innerHTML = "";
-            }, 2000);
-          } else {
-            formMessages.innerHTML = "<span style='color: red;'>Oh, seems there was an error sending your message. Please <a href='mailto:fetchenbrandi@gmail.com'>send an email</a> instead.</span>";
-          }
-        })
-        .catch(error => {
-          formMessages.innerHTML = "<span style='color: red;'>Oh, seems there was an error sending your message. Please <a href='mailto:fetchenbrandi@gmail.com'>send an email</a> instead.</span>";
-        });
-      });
     });
-  </script>
+
+    // Inline validation functions
+    function validateField(field) {
+      const errorSpan = field.nextElementSibling;
+      if (!field.value.trim()) {
+        errorSpan.textContent = "This field is required.";
+        return false;
+      } else {
+        errorSpan.textContent = "";
+        return true;
+      }
+    }
+
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const messageField = document.getElementById("message");
+
+    nameField.addEventListener("input", () => validateField(nameField));
+    emailField.addEventListener("input", () => {
+      const errorSpan = emailField.nextElementSibling;
+      if (!emailField.value.trim()) {
+        errorSpan.textContent = "This field is required.";
+      } else if (!/\S+@\S+\.\S+/.test(emailField.value)) {
+        errorSpan.textContent = "Please enter a valid email address.";
+      } else {
+        errorSpan.textContent = "";
+      }
+    });
+    messageField.addEventListener("input", () => validateField(messageField));
+
+    // Form validation and submission without AJAX
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      formMessages.innerHTML = "";
+
+      // Validate fields
+      let valid = true;
+      valid = validateField(nameField) && valid;
+      valid = validateField(emailField) && valid;
+      valid = validateField(messageField) && valid;
+      if (!valid) {
+        formMessages.innerHTML = "<span style='color: red;'>Please review the fields below.</span>";
+        return;
+      }
+
+      // Form submission via traditional POST
+      form.submit(); // Submit the form normally
+    });
+  });
+</script>
+
 </head>
 <body cz-shortcut-listen="true">
   <div class="container">
