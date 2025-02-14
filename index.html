@@ -331,11 +331,11 @@
               formMessages.innerHTML = "";
             }, 2000);
           } else {
-            formMessages.innerHTML = "<span style='color: red;'>Oh, seems there was an error sending your message. Please <a href="mailto:fetchenbrandi@gmail.com">send an email</a> instead.</span>";
+            formMessages.innerHTML = "<span style='color: red;'>Oh, seems there was an error sending your message. Please <a href='mailto:fetchenbrandi@gmail.com'>send an email</a> instead.</span>";
           }
         })
         .catch(error => {
-          formMessages.innerHTML = "<span style='color: red;'>Oh, seems there was an error sending your message. Please <a href="mailto:fetchenbrandi@gmail.com">send an email</a> instead.</span>";
+          formMessages.innerHTML = "<span style='color: red;'>Oh, seems there was an error sending your message. Please <a href='mailto:fetchenbrandi@gmail.com'>send an email</a> instead.</span>";
         });
       });
     });
