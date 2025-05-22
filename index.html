@@ -1,386 +1,189 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Front-End Development for Design Agencies</title>
-  <meta name="description" content="Front-End Development for Design Agencies by Brandi Fetchen. Clean web development to preserve your design.">
-  <meta name="keywords" content="front-end development, design agencies, freelance web developer, web design, branding, NY">
-  <meta property="og:title" content="Front-End Development for Design Agencies">
-  <meta property="og:description" content="Clean web development to preserve your design.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Freelance Front-End Developer</title>
   <style>
-    html, body {
-      height: 100%;
+    body {
+      background-color: white;
+      color: #1f2937;
+      font-family: sans-serif;
+      line-height: 1.6;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #f5f5f5;
-      color: #222;
-      font-family: 'Montserrat', sans-serif;
-      text-align: center;
     }
-    .container {
-      animation: fadeInUp 1s ease-out forwards;
-      max-width: 900px;
+    section {
+      max-width: 48rem;
       margin: 0 auto;
-    }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      padding: 3rem 1.5rem;
     }
     h1 {
-      font-size: 2.5rem;
+      font-size: 1.875rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
       margin-bottom: 0.5rem;
-      color: #4a3421;
+    }
+    .mb-8 {
+      margin-bottom: 2rem;
     }
     p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      color: #4a3421;
+      color: #374151;
     }
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      font-size: 1rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border-radius: 6px;
-      text-decoration: none;
+    .text-lg {
+      font-size: 1.125rem;
     }
-    .btn-primary {
-      background: #4a3421;
-      color: #fff;
-      box-shadow: 0 4px 10px rgba(74,52,33,0.3);
+    .font-semibold {
+      font-weight: 600;
     }
-    .btn-primary:hover {
-      background: #3a2918;
-      transform: scale(1.05);
-      outline: 3px solid #ffbf47;
+    .mt-6 {
+      margin-top: 1.5rem;
     }
-    .btn-secondary {
-      background: #777;
-      color: white;
-      border-radius: 6px;
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      margin-left: 5px;
+    .mt-8 {
+      margin-top: 2rem;
     }
-    .btn-secondary:hover {
-      background: #666;
-      transform: scale(1.05);
-      outline: 3px solid #ffbf47;
-    }
-    footer {
+    .contact {
+      border-top: 1px solid #e5e7eb;
+      margin-top: 3rem;
+      padding-top: 2rem;
       text-align: center;
-      padding: 10px;
-      background: #f5f5f5;
-      color: #222;
-      margin-top: 20px;
     }
-    .cookie-consent-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #333;
-      color: white;
-      padding: 10px;
+    form {
+      margin-top: 1rem;
       display: flex;
+      flex-direction: row;
+      gap: 0.75rem;
       justify-content: center;
       align-items: center;
+      flex-wrap: nowrap;
     }
-    .cookie-consent-banner p {
-      color: #f5f5f5;
-      margin: 1.5rem;
-    }
-    .cookie-consent-buttons {
-      display: flex;
-      gap: 10px;
-    }
-    /* Modal Styles */
-    .modal {
-      display: none; 
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-      animation: fadeInModal 0.5s ease-out;
-    }
-    @keyframes fadeInModal {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    .modal-content {
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 500px;
-      position: relative;
-      animation: slideDown 0.5s ease-out;
-      text-align: left;
-    }
-    @keyframes slideDown {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .close-modal {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #4a3421;
-      cursor: pointer;
-    }
-    .contact-form label {
-      display: block;
-      margin: 10px 0 5px;
-      font-weight: bold;
-      color: #4a3421;
-      font-size: 1.1rem;
-    }
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    input {
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
       font-size: 1rem;
+      width: 160px;
     }
-    .contact-form input:focus, .contact-form textarea:focus {
-      border-color: #4a3421;
-      box-shadow: 0 0 5px rgba(74,52,33,0.5);
-      outline: none;
-    }
-    .contact-form button {
-      background: #4a3421;
+    button {
+      font-weight: 600;
+      background-color: #1f2937;
       color: white;
-      padding: 12px 20px;
+      padding: 0.75rem 1.5rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      margin-top: 10px;
+      min-width: 100px;
+      transition: background-color 0.3s ease;
     }
-    .contact-form button:hover {
-      background: #3a2918;
-      transform: scale(1.05);
-      outline: 3px solid #ffbf47;
+    button:hover {
+      background-color: #111827;
     }
-    .contact-form .lock-info {
-      font-size: 0.9rem;
-      color: #4a3421;
-      margin-top: 5px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
+    .confirmation {
+      margin-top: 1rem;
+      color: green;
+      font-weight: 500;
     }
-    .contact-form .lock-info svg {
-      width: 16px;
-      height: 16px;
-      fill: #4a3421;
-    }
-    .instruction {
-      font-size: 1rem;
-      color: #4a3421;
-      margin-bottom: 15px;
-    }
-    .error-message {
-      color: red;
-      font-size: 0.9rem;
-      margin-top: -5px;
-      margin-bottom: 10px;
-    }
-    #form-messages {
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-    @media (max-width: 768px) {
-      .container {
-        max-width: 95%;
+    @media (max-width: 520px) {
+      form {
+        flex-wrap: wrap;
+      }
+      input {
+        width: 100%;
+      }
+      button {
+        width: 100%;
       }
     }
   </style>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Cookie consent logic
-    const cookieBanner = document.getElementById("cookie-consent-banner");
-    const acceptBtn = document.getElementById("accept-cookies");
-    const declineBtn = document.getElementById("decline-cookies");
-    if (localStorage.getItem("cookieConsent")) {
-      cookieBanner.style.display = "none";
-    }
-    acceptBtn.addEventListener("click", function () {
-      localStorage.setItem("cookieConsent", "accepted");
-      cookieBanner.style.display = "none";
-    });
-    declineBtn.addEventListener("click", function () {
-      localStorage.setItem("cookieConsent", "declined");
-      cookieBanner.style.display = "none";
-    });
+</head>
+<body>
+  <section>
+    <h1>Front-End Development for Design Agencies</h1>
 
-    // Modal popup logic for the contact form
-    const fillOutBtn = document.querySelector('.btn-secondary');
-    const modal = document.getElementById("popup-modal");
-    const closeModal = document.querySelector('.close-modal');
-    const form = document.getElementById("popup-contact-form");
-    const formMessages = document.getElementById("form-messages");
+    <div class="mb-8">
+      <h2>Seasoned and self-sufficient.</h2>
+      <p>Battle-tested skills. No babysitting needed.</p>
+    </div>
 
-    fillOutBtn.addEventListener("click", function(e) {
+    <div class="mb-8">
+      <h2>Design-aware, dev-ready.</h2>
+      <p>I speak your language and bring creative visions to life.</p>
+    </div>
+
+    <div class="mb-8">
+      <h2>Reliable under pressure.</h2>
+      <p>Tight timelines? No problem. I deliver without the drama.</p>
+    </div>
+
+    <p class="mt-8">
+      I work with agencies focused on high-end branding — like a NYC firm for global wine and spirits brands.
+      They trust me to build, maintain, and improve websites that meet their standards with minimal back-and-forth.
+    </p>
+
+    <p class="mt-6 font-semibold text-lg">
+      $105/hr &bull; Freelance Developer &bull; Based in NY<br />
+      Quick audits or full builds — whatever you need.
+    </p>
+
+    <div class="contact">
+      <p>Let’s build something great together.</p>
+      <form id="contact-form" novalidate>
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        <button type="submit">Send</button>
+      </form>
+      <div id="confirmation" class="confirmation" style="display: none;">Message sent successfully!</div>
+    </div>
+  </section>
+
+  <script>
+    const formLoadTime = Date.now();
+
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
       e.preventDefault();
-      modal.style.display = "flex";
-    });
 
-    closeModal.addEventListener("click", function() {
-      modal.style.display = "none";
-      formMessages.innerHTML = "";
-    });
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const button = this.querySelector("button");
+      const confirmation = document.getElementById("confirmation");
 
-    // Close modal when clicking outside modal-content
-    window.addEventListener("click", function(e) {
-      if (e.target === modal) {
-        modal.style.display = "none";
-        formMessages.innerHTML = "";
-      }
-    });
-
-    // Inline validation functions
-    function validateField(field) {
-      const errorSpan = field.nextElementSibling;
-      if (!field.value.trim()) {
-        errorSpan.textContent = "This field is required.";
-        return false;
-      } else {
-        errorSpan.textContent = "";
-        return true;
-      }
-    }
-
-    const nameField = document.getElementById("name");
-    const emailField = document.getElementById("email");
-    const messageField = document.getElementById("message");
-
-    nameField.addEventListener("input", () => validateField(nameField));
-    emailField.addEventListener("input", () => {
-      const errorSpan = emailField.nextElementSibling;
-      if (!emailField.value.trim()) {
-        errorSpan.textContent = "This field is required.";
-      } else if (!/\S+@\S+\.\S+/.test(emailField.value)) {
-        errorSpan.textContent = "Please enter a valid email address.";
-      } else {
-        errorSpan.textContent = "";
-      }
-    });
-    messageField.addEventListener("input", () => validateField(messageField));
-
-    // Form validation and submission without AJAX
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      formMessages.innerHTML = "";
-
-      // Validate fields
-      let valid = true;
-      valid = validateField(nameField) && valid;
-      valid = validateField(emailField) && valid;
-      valid = validateField(messageField) && valid;
-      if (!valid) {
-        formMessages.innerHTML = "<span style='color: red;'>Please review the fields below.</span>";
+      // Time-based check: require user to spend at least 5 seconds on page before submitting
+      const now = Date.now();
+      if (now - formLoadTime < 5000) {
+        alert("Please take a moment before submitting the form.");
         return;
       }
 
-      // Form submission via traditional POST
-      form.submit(); // Submit the form normally
-    });
-  });
-</script>
+      if (!name.value.trim()) {
+        alert("Please enter your name.");
+        name.focus();
+        return;
+      }
+      if (!email.value.trim() || !email.value.includes("@")) {
+        alert("Please enter a valid email address.");
+        email.focus();
+        return;
+      }
 
-</head>
-<body cz-shortcut-listen="true">
-  <div class="container">
-    <h1>Front-End Development for Design Agencies</h1>
-    <p>Clean front-end web development that preserves your design.</p>
-    <p>I work with agencies specializing in high-end branding, like a NYC design firm for global wine and spirits brands. They trust me to build, maintain, and improve websites to meet their standards. Minimal back-and-forth.</p>
-    <p><strong>$105/hr Freelance Developer Based in NY</strong><br>Quick Audits &amp; Full Builds Available</p>
-    <div>
-      <a href="mailto:fetchenbrandi@gmail.com" class="btn btn-primary">Email</a>
-      <a href="#" class="btn btn-secondary">Simple form</a>
-    </div>
-    <footer>© 2025 Brandi Fetchen</footer>
-  </div>
-  
-  <!-- Popup Modal for the Contact Form -->
-  <div id="popup-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-content">
-      <span class="close-modal" aria-label="Close">&times;</span>
-      <h2 id="modal-title" style="color:#4a3421;">Contact Brandi</h2>
-      <p class="instruction">Please fill out the form below. I’ll get back to you within 24 hours.</p>
-      <div id="form-messages"></div>
-      <!-- Note: Replace the form action URL with your secure endpoint -->
-      <form id="popup-contact-form" action="https://formspree.io/f/mgvonowa" method="POST" novalidate>
-        <div class="contact-form">
-          <!-- Hidden CSRF token for additional security -->
-          <input type="hidden" name="csrf_token" value="secure_token_here">
-          
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required placeholder="Alex Doe" aria-required="true">
-          <div class="error-message"></div>
-          
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="alexdoe@email.com" aria-required="true">
-          <div class="error-message"></div>
-          
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" required placeholder="Briefly describe your current needs. No confidential information, please." aria-required="true"></textarea>
-          <div class="error-message"></div>
-          
-          <button type="submit">Let’s Connect</button>
-          <div class="lock-info">
-            <!-- Simple lock icon using SVG -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm6-7h-1V7a5 5 0 0 0-10 0v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2zM8 7a4 4 0 0 1 8 0v3H8V7z"></path>
-            </svg>
-            <span>Your info is secure</span>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  
-  <div id="cookie-consent-banner" class="cookie-consent-banner">
-    <p>This site uses cookies for analytics and testing.</p>
-    <div class="cookie-consent-buttons">
-      <button id="accept-cookies" class="btn btn-primary">Accept</button>
-      <button id="decline-cookies" class="btn btn-secondary">Decline</button>
-    </div>
-  </div>
-  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBNGFJX6XF"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-FBNGFJX6XF');
+      // Prepare mailto link
+      const mailto = `mailto:youremail@example.com?subject=Contact from ${encodeURIComponent(name.value)}&body=Name: ${encodeURIComponent(name.value)}%0DEmail: ${encodeURIComponent(email.value)}`;
+
+      // Send mailto link
+      window.location.href = mailto;
+
+      // Show confirmation and update button
+      button.textContent = "Sent";
+      confirmation.style.display = "block";
+
+      // Disable form to prevent multiple submits
+      button.disabled = true;
+      name.disabled = true;
+      email.disabled = true;
+    });
   </script>
 </body>
 </html>
